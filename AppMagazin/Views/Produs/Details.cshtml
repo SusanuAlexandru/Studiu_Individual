@@ -1,0 +1,55 @@
+﻿@model AppMagazin.Models.Produs
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="container py-5">
+    <h1 class="text-center mb-5 text-primary">Product Details</h1>
+
+    <div class="card shadow-lg border-0">
+        <div class="card-body p-4">
+            <h4 class="card-title text-center text-uppercase mb-4 text-secondary">@Model.Nume</h4>
+            <hr class="mb-4" />
+
+            <div class="row">
+                <!-- Imaginea produsului -->
+                <div class="col-md-4 text-center mb-4">
+                    <img src="@Model.ImagineURL" alt="@Model.Nume" class="img-fluid rounded shadow-sm border" style="max-height: 300px; object-fit: cover;" />
+                </div>
+
+                <!-- Detaliile produsului -->
+                <div class="col-md-8">
+                    <dl class="row">
+                        <dt class="col-sm-4 fw-bold text-secondary">@Html.DisplayNameFor(model => model.Nume):</dt>
+                        <dd class="col-sm-8 text-dark">@Html.DisplayFor(model => model.Nume)</dd>
+
+                        <dt class="col-sm-4 fw-bold text-secondary">@Html.DisplayNameFor(model => model.Descriere):</dt>
+                        <dd class="col-sm-8 text-dark">@Html.DisplayFor(model => model.Descriere)</dd>
+
+                        <dt class="col-sm-4 fw-bold text-secondary">@Html.DisplayNameFor(model => model.Pret):</dt>
+                        <dd class="col-sm-8 text-dark">@Html.DisplayFor(model => model.Pret) RON</dd>
+
+                        <dt class="col-sm-4 fw-bold text-secondary">@Html.DisplayNameFor(model => model.Stoc):</dt>
+                        <dd class="col-sm-8 text-dark">@Html.DisplayFor(model => model.Stoc) units</dd>
+
+                        <dt class="col-sm-4 fw-bold text-secondary">@Html.DisplayNameFor(model => model.ImagineURL):</dt>
+                        <dd class="col-sm-8 text-truncate" style="max-width: 400px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
+                            @Html.DisplayFor(model => model.ImagineURL)
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Butoane de navigare -->
+    <div class="text-center mt-4">
+        <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-warning me-2 shadow-sm">
+            <i class="bi bi-pencil"></i> Edit
+        </a>
+        <a asp-action="Index" class="btn btn-primary shadow-sm">
+            <i class="bi bi-arrow-left"></i> Back to List
+        </a>
+    </div>
+</div>

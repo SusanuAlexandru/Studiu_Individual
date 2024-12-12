@@ -1,0 +1,62 @@
+﻿@model IEnumerable<AppMagazin.Models.Produs>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="container py-5">
+    <h1 class="text-center mb-5 display-4">Catalogul de Produse</h1>
+
+    <!-- Filtrare produse după preț -->
+    <div class="container d-flex justify-content-center my-4">
+        <form method="get" class="w-100" style="max-width: 600px;">
+            <div class="row">
+                <div class="col-md-4">
+                    <input type="number" name="minPrice" class="form-control" placeholder="Preț minim" step="0.01" value="@ViewData["MinPrice"]" />
+                </div>
+                <div class="col-md-4">
+                    <input type="number" name="maxPrice" class="form-control" placeholder="Preț maxim" step="0.01" value="@ViewData["MaxPrice"]" />
+                </div>
+                <div class="col-md-4">
+                    <button type="submit" class="btn btn-primary w-100">Filtrează</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <a asp-action="Create" class="btn btn-success btn-lg">
+            <i class="bi bi-plus-circle"></i> Adaugă Produs
+        </a>
+    </div>
+    
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        @foreach (var item in Model)
+        {
+            <div class="col">
+                <div class="card border-0 shadow-sm h-100">
+                    <img src="@item.ImagineURL" class="card-img-top rounded-top" alt="Imagine carte" style="height: 250px; object-fit: cover;">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title text-truncate">@item.Nume</h5>
+                        <p class="card-text text-muted flex-grow-1" style="max-height: 60px; overflow: hidden;">@item.Descriere</p>
+                        <div class="mt-3">
+                            <span class="h6 text-success">@item.Pret.ToString("C")</span>
+                            <span class="badge bg-info text-dark">Stoc: @item.Stoc</span>
+                        </div>
+                    </div>
+                    <div class="card-footer bg-light text-center border-top-0">
+                        <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-outline-primary btn-sm me-2">
+                            <i class="bi bi-eye"></i> Detalii
+                        </a>
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-outline-warning btn-sm me-2">
+                            <i class="bi bi-pencil"></i> Editează
+                        </a>
+                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-outline-danger btn-sm">
+                            <i class="bi bi-trash"></i> Șterge
+                        </a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

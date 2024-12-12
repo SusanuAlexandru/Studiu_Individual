@@ -1,0 +1,58 @@
+﻿@model AppMagazin.Models.Produs
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<div class="container py-4">
+    <h1 class="text-center mb-4">Edit Product</h1>
+
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <form asp-action="Edit" class="needs-validation" novalidate>
+                <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+                <input type="hidden" asp-for="Id" />
+                <div class="form-group">
+                    <label asp-for="ImagineURL" class="control-label"></label>
+                    <input asp-for="ImagineURL" class="form-control" />
+                    <span asp-validation-for="ImagineURL" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="Nume" class="form-label fw-bold"></label>
+                    <input asp-for="Nume" class="form-control" placeholder="Enter product name" />
+                    <span asp-validation-for="Nume" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Descriere" class="form-label fw-bold"></label>
+                    <textarea asp-for="Descriere" class="form-control" rows="3" placeholder="Enter product description"></textarea>
+                    <span asp-validation-for="Descriere" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Pret" class="form-label fw-bold"></label>
+                    <input asp-for="Pret" class="form-control" type="number" step="0.01" placeholder="Enter product price" />
+                    <span asp-validation-for="Pret" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Stoc" class="form-label fw-bold"></label>
+                    <input asp-for="Stoc" class="form-control" type="number" placeholder="Enter product stock" />
+                    <span asp-validation-for="Stoc" class="text-danger"></span>
+                    <div class="text-center mt-5">
+                        <input type="submit" value="Save Changes" class="btn btn-warning me-2" />
+                    </div>
+                </div>
+            </form>
+        </div>
+	</div>
+    <div class="text-center mt-3">
+        <a asp-action="Index" class="btn btn-primary">Back to List</a>
+	</div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
